@@ -1,23 +1,29 @@
 version: "3"
 services:
   mysql:
-    image: mysql
+    image: mysql:8.0.33
 
-    container_name: mysql
+    container_name: colecto-mysql
     environment:
       MYSQL_DATABASE: colecto
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: username
       MYSQL_PASSWORD: 1234
     ports:
-      - 3306:3306
+      - 9595:3306
+
+    volumes:
+      - colecto:/mysql
 
   redis:
-    container_name: redis
+    container_name: colecto-redis
 
     image: redis
     ports:
-      - 6379:6379
+      - 9596:6379
+
+    volumes:
+      - colecto:/redis
 
   springbootapp:
     build: .
@@ -28,3 +34,6 @@ services:
     depends_on:
       - mysql
       - redis
+
+volumes:
+  colecto:
