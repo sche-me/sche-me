@@ -18,7 +18,7 @@ derby.log
 # Gradle artifacts
 .gradle
 .gradletasknamecache
-/build
+server/build
 buildSrc/build
 /spring-*/build
 /framework-bom/build
