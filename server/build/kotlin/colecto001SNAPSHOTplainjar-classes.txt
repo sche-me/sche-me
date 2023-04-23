@@ -1,0 +1,1 @@
+/Users/henry.k/Desktop/sche-me/server/build/classes/kotlin/main/com/colecto/colecto/ColectoApplication.class:/Users/henry.k/Desktop/sche-me/server/build/classes/kotlin/main/com/colecto/colecto/ColectoApplicationKt.class:/Users/henry.k/Desktop/sche-me/server/build/classes/kotlin/main/com/colecto/colecto/controller/HelloController.class

@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class ColectoApplication
 
 fun main(args: Array<String>) {
-	runApplication<ColectoApplication>(*args)
+    runApplication<ColectoApplication>(*args)
 }
