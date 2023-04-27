@@ -1,98 +1,134 @@
 export const postList = [
   {
     id:1,
-    title:"chatGPT로 테이블링 챗봇 만들기",
+    title:"chatGPT로 테이블링 챗봇 만들기1",
     icon:"icon.png",
     source:"테이블링"
   },
   {
     id:2,
-    title:"[모집] 2023 우아한테크캠프 6기",
+    title:"chatGPT로 테이블링 챗봇 만들기2",
     icon:"icon.png",
-    source:"우아한형제들"
+    source:"테이블링"
   },
   {
     id:3,
-    title:"당근마켓 모바일 실험실: Rust로 공유 라이브러리 만들기",
+    title:"chatGPT로 테이블링 챗봇 만들기3",
     icon:"icon.png",
-    source:"당근마켓"
+    source:"테이블링"
   },
   {
     id:4,
-    title:"하루만에 완성하는 Django+DRF 서비스(5) — END",
+    title:"chatGPT로 테이블링 챗봇 만들기4",
     icon:"icon.png",
-    source:"휴먼스케이프"
+    source:"테이블링"
   },
   {
     id:5,
-    title:"Traffic Mirroring 서비스 소개",
+    title:"chatGPT로 테이블링 챗봇 만들기5",
     icon:"icon.png",
     source:"테이블링"
   },
   {
     id:6,
-    title:"컴투스가 PC용 Google Play 게임즈를 활용해 막힘없는 크로스 플랫폼 플레이를 구현한 방법을 소개합니다",
+    title:"chatGPT로 테이블링 챗봇 만들기6",
     icon:"icon.png",
-    source:"구글디벨로퍼스"
+    source:"테이블링"
   },
-  // {
-  //   id:1,
-  //   title:"chatGPT로 테이블링 챗봇 만들기",
-  //   icon:"icon.png",
-  //   source:"테이블링"
-  // },
-  // {
-  //   id:1,
-  //   title:"chatGPT로 테이블링 챗봇 만들기",
-  //   icon:"icon.png",
-  //   source:"테이블링"
-  // },
-  // {
-  //   id:1,
-  //   title:"chatGPT로 테이블링 챗봇 만들기",
-  //   icon:"icon.png",
-  //   source:"테이블링"
-  // },
-  // {
-  //   id:1,
-  //   title:"chatGPT로 테이블링 챗봇 만들기",
-  //   icon:"icon.png",
-  //   source:"테이블링"
-  // },
-  // {
-  //   id:1,
-  //   title:"chatGPT로 테이블링 챗봇 만들기",
-  //   icon:"icon.png",
-  //   source:"테이블링"
-  // },
-  // {
-  //   id:1,
-  //   title:"chatGPT로 테이블링 챗봇 만들기",
-  //   icon:"icon.png",
-  //   source:"테이블링"
-  // },
-  // {
-  //   id:1,
-  //   title:"chatGPT로 테이블링 챗봇 만들기",
-  //   icon:"icon.png",
-  //   source:"테이블링"
-  // },
-  // {
-  //   id:1,
-  //   title:"chatGPT로 테이블링 챗봇 만들기",
-  //   icon:"icon.png",
-  //   source:"테이블링"
-  // },
-  // {
-  //   id:1,
-  //   title:"chatGPT로 테이블링 챗봇 만들기",
-  //   icon:"icon.png",
-  //   source:"테이블링"
-  // },
-  // {
-  //   id:1,
-  //   title:"chatGPT로 테이블링 챗봇 만들기",
-  //   icon:"icon.png",
-  //   source:"테이블링"
-  // },
+  {
+    id:7,
+    title:"chatGPT로 테이블링 챗봇 만들기7",
+    icon:"icon.png",
+    source:"테이블링"
+  },
+  {
+    id:8,
+    title:"chatGPT로 테이블링 챗봇 만들기8",
+    icon:"icon.png",
+    source:"테이블링"
+  },
+  {
+    id:9,
+    title:"chatGPT로 테이블링 챗봇 만들기9",
+    icon:"icon.png",
+    source:"테이블링"
+  },
+  {
+    id:10,
+    title:"chatGPT로 테이블링 챗봇 만들기10",
+    icon:"icon.png",
+    source:"테이블링"
+  },
+  {
+    id:11,
+    title:"chatGPT로 테이블링 챗봇 만들기11",
+    icon:"icon.png",
+    source:"테이블링"
+  },
+  {
+    id:12,
+    title:"chatGPT로 테이블링 챗봇 만들기12",
+    icon:"icon.png",
+    source:"테이블링"
+  },
+  {
+    id:13,
+    title:"chatGPT로 테이블링 챗봇 만들기13",
+    icon:"icon.png",
+    source:"테이블링"
+  },
+  {
+    id:14,
+    title:"chatGPT로 테이블링 챗봇 만들기14",
+    icon:"icon.png",
+    source:"테이블링"
+  },
+  {
+    id:15,
+    title:"chatGPT로 테이블링 챗봇 만들기15",
+    icon:"icon.png",
+    source:"테이블링"
+  },
+  {
+    id:16,
+    title:"chatGPT로 테이블링 챗봇 만들기16",
+    icon:"icon.png",
+    source:"테이블링"
+  },
+  {
+    id:17,
+    title:"chatGPT로 테이블링 챗봇 만들기17",
+    icon:"icon.png",
+    source:"테이블링"
+  },
+  {
+    id:18,
+    title:"chatGPT로 테이블링 챗봇 만들기18",
+    icon:"icon.png",
+    source:"테이블링"
+  },
+  {
+    id:19,
+    title:"chatGPT로 테이블링 챗봇 만들기19",
+    icon:"icon.png",
+    source:"테이블링"
+  },
+  {
+    id:20,
+    title:"chatGPT로 테이블링 챗봇 만들기20",
+    icon:"icon.png",
+    source:"테이블링"
+  },
+  {
+    id:21,
+    title:"chatGPT로 테이블링 챗봇 만들기21",
+    icon:"icon.png",
+    source:"테이블링"
+  },
+  {
+    id:22,
+    title:"chatGPT로 테이블링 챗봇 만들기22",
+    icon:"icon.png",
+    source:"테이블링"
+  },
 ]
