@@ -17,70 +17,53 @@
 import { useEffect, useState } from 'react'
 import PostItem from './PostItem'
 import { postList } from '../../mock/postList'
-import { PostProps } from '../../types/PostProps'
 
 const PostList = () => {
-  const previousData: any[] = []
   const [pageCount, setPageCount] = useState(0)
   const [fetching, setFetching] = useState(false)
-  const [myData, setMyData] = useState<any>([])
+  const [posts, setPosts] = useState<any>([])
 
-  const getPreviousData = () => {
-    for (let i = 0; i < postList.length; i++) {
-      const data = {
-        title: postList[i]?.title,
-        icon: postList[i]?.icon,
-        source: postList[i]?.source,
-      }
-      previousData.push(data)
-    }
-  }
-
-  getPreviousData()
+  const MAXIMUM_PAGES = 10
 
   const handleScroll = () => {
     const scrollHeight = document.documentElement.scrollHeight
     const scrollTop = document.documentElement.scrollTop
     const clientHeight = document.documentElement.clientHeight
 
-    if (fetching === false && scrollTop + clientHeight >= scrollHeight) {
+    if (scrollTop + clientHeight + 100 >= scrollHeight) {
       fetchMoreData()
     }
   }
-
+  
+  window.addEventListener('scroll', handleScroll)
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
+    appendData()
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
-  })
+  }, [])
+  
+  const appendData = () => {
+    setFetching(true)
+    setPosts([...posts, ...postList])
+    setPageCount(pageCount + 1)
+    setFetching(false)
+  }
+
 
   const fetchMoreData = () => {
-    setFetching(true)
+    if (pageCount >= MAXIMUM_PAGES) return
+    if (fetching) return
 
-    if (pageCount >= previousData.length) {
-      return
-    }
-
-    const fetchedData = previousData[pageCount]
-    const mergedData = myData.concat(fetchedData)
-    setMyData(mergedData)
-    setPageCount(pageCount + 1)
-
-    setFetching(false)
+    appendData()
   }
   return (
     <ul>
-      {previousData.map((post) => (
+      {posts.map((post, index) => 
         <li>
-          <PostItem key={post.id} id={post.id} title={post.title} source={post.source} icon={post.source} />
+          <PostItem key={index} id={index} title={post.title} source={post.source} icon={post.source} />
         </li>
-      ))}
-      {myData.map((post: { id: number; title: string; source: string }) => (
-        <li>
-          <PostItem key={post.id} id={post.id} title={post.title} source={post.source} icon={post.source}/>
-        </li>
-      ))}
+      )}
     </ul>
   )
 }
