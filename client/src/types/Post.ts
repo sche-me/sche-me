@@ -1,4 +1,4 @@
-export interface PostProps {
+export interface Post {
   id: number;
   title: string;
   icon?:string;

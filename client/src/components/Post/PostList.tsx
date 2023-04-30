@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import PostItem from './PostItem'
 import { postList } from '../../mock/postList'
+import { Post } from '../../types/Post'
 
 const PostList = () => {
   const [pageCount, setPageCount] = useState(0)
   const [fetching, setFetching] = useState(false)
-  const [posts, setPosts] = useState<any>([])
+  const [posts, setPosts] = useState<Post[]>([])
 
   const MAXIMUM_PAGES = 10
 
@@ -43,7 +44,7 @@ const PostList = () => {
   }
   return (
     <ul>
-      {posts.map((post: Post, index) =>
+      {posts.map((post: Post, index: number) =>
         <li>
           <PostItem key={index} id={index} title={post.title} source={post.source} icon={post.source} />
         </li>
