@@ -1,19 +1,3 @@
-// import React from 'react'
-// import PostItem from './PostItem'
-// import { postList } from '../../mock/postList'
-
-// const PostList = () => {
-//   return (
-//     <>
-//       {postList.map((post) => (
-//         <PostItem id={post.id} title={post.title} source={post.source} />
-//       ))}
-//     </>
-//   )
-// }
-
-// export default PostList
-
 import { useEffect, useState } from 'react'
 import PostItem from './PostItem'
 import { postList } from '../../mock/postList'
@@ -34,7 +18,7 @@ const PostList = () => {
       fetchMoreData()
     }
   }
-  
+
   window.addEventListener('scroll', handleScroll)
   useEffect(() => {
     appendData()
@@ -42,7 +26,7 @@ const PostList = () => {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
-  
+
   const appendData = () => {
     setFetching(true)
     setPosts([...posts, ...postList])
@@ -59,7 +43,7 @@ const PostList = () => {
   }
   return (
     <ul>
-      {posts.map((post, index) => 
+      {posts.map((post: Post, index) =>
         <li>
           <PostItem key={index} id={index} title={post.title} source={post.source} icon={post.source} />
         </li>
