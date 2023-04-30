@@ -1,27 +1,12 @@
-// import React from 'react'
-// import PostItem from './PostItem'
-// import { postList } from '../../mock/postList'
-
-// const PostList = () => {
-//   return (
-//     <>
-//       {postList.map((post) => (
-//         <PostItem id={post.id} title={post.title} source={post.source} />
-//       ))}
-//     </>
-//   )
-// }
-
-// export default PostList
-
 import { useEffect, useState } from 'react'
 import PostItem from './PostItem'
 import { postList } from '../../mock/postList'
+import { Post } from '../../types/Post'
 
 const PostList = () => {
   const [pageCount, setPageCount] = useState(0)
   const [fetching, setFetching] = useState(false)
-  const [posts, setPosts] = useState<any>([])
+  const [posts, setPosts] = useState<Post[]>([])
 
   const MAXIMUM_PAGES = 10
 
@@ -34,7 +19,7 @@ const PostList = () => {
       fetchMoreData()
     }
   }
-  
+
   window.addEventListener('scroll', handleScroll)
   useEffect(() => {
     appendData()
@@ -42,7 +27,7 @@ const PostList = () => {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
-  
+
   const appendData = () => {
     setFetching(true)
     setPosts([...posts, ...postList])
@@ -59,7 +44,7 @@ const PostList = () => {
   }
   return (
     <ul>
-      {posts.map((post, index) => 
+      {posts.map((post: Post, index: number) =>
         <li>
           <PostItem key={index} id={index} title={post.title} source={post.source} icon={post.source} />
         </li>

@@ -1,7 +1,7 @@
 import React from 'react'
-import { PostProps } from '../../types/PostProps'
+import { Post } from '../../types/Post'
 
-const PostItem: React.FC<PostProps> = ({ title, icon, source }) => {
+const PostItem: React.FC<Post> = ({ title, icon, source }) => {
   return (
     <div className="w-[1000px] h-[41px] mx-auto mb-12 mt-10 transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-110 hover: cursor-pointer duration-300">
       <p className="text-[20px] text-left text-black mb-4">{title}</p>
