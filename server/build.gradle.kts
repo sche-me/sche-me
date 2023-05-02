@@ -25,7 +25,9 @@ dependencies {
     implementation("mysql:mysql-connector-java:8.0.32")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.redisson:redisson:3.20.1")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
 
+    compileOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
