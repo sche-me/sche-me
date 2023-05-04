@@ -24,6 +24,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("mysql:mysql-connector-java:8.0.32")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
+    implementation("com.google.code.gson:gson:2.7")
     implementation("org.redisson:redisson:3.20.1")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
