@@ -1,20 +1,20 @@
 package com.colecto.colecto.controller
 
-import com.colecto.colecto.entity.Product
-import com.colecto.colecto.service.ProductService
+import com.colecto.colecto.entity.Article
+import com.colecto.colecto.service.ArticleService
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.RequestMapping
 
 @RestController
-@RequestMapping("product")
+@RequestMapping("article")
 
-class ProductController(
-  private val productService: ProductService
+class ArticleController(
+  private val articleService: ArticleService
 ) {
 
   @GetMapping
-  fun index(): Array<Product> {
-    return productService.findAll()
+  fun index(): Array<Article> {
+    return articleService.findAll()
   }
 }

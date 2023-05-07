@@ -1,11 +1,11 @@
 package com.colecto.colecto.service
 
 import org.springframework.stereotype.Service
-import com.colecto.colecto.entity.Product
+import com.colecto.colecto.entity.Article
 
 @Service
-class ProductService {
-   fun findAll(): Array<Product> {
+class ArticleService {
+   fun findAll(): Array<Article> {
      return emptyArray()
    }
 }
