@@ -3,8 +3,8 @@ package com.colecto.colecto.model
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
 import org.springframework.data.annotation.CreatedDate
-import org.springframework.data.annotation.Id
 import org.springframework.data.annotation.LastModifiedDate
 import java.time.Instant
 
@@ -22,6 +22,6 @@ class Publisher(
         private set
 
     @LastModifiedDate
-    var createdAt: Instant = Instant.now()
+    var updatedAt: Instant = Instant.now()
         private set
 }

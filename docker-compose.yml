@@ -6,7 +6,6 @@ services:
     container_name: colecto-mysql
     command: --innodb_use_native_aio=0
     environment:
-      MYSQL_DATABASE: colecto
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: username
       MYSQL_PASSWORD: 1234

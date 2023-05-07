@@ -2,7 +2,7 @@ package com.colecto.colecto.model
 
 import jakarta.persistence.*
 import org.springframework.data.annotation.CreatedDate
-import org.springframework.data.annotation.Id
+import jakarta.persistence.Id
 import org.springframework.data.annotation.LastModifiedDate
 import java.time.Instant
 
@@ -17,13 +17,13 @@ class Rss(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Int = 0
 
-    var lastSyncedAt: Instant = Instant.MIN
+    var lastSyncedAt: Instant = Instant.now()
 
     @CreatedDate
     var createdAt: Instant = Instant.now()
         private set
 
     @LastModifiedDate
-    var createdAt: Instant = Instant.now()
+    var updatedAt: Instant = Instant.now()
         private set
 }

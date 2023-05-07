@@ -1,8 +1,12 @@
 package com.colecto.colecto.model
 
-import jakarta.persistence.*
+import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.JoinColumn
+import jakarta.persistence.ManyToOne
 import org.springframework.data.annotation.CreatedDate
-import org.springframework.data.annotation.Id
+import jakarta.persistence.Id
 import org.springframework.data.annotation.LastModifiedDate
 import java.time.Instant
 
@@ -25,6 +29,6 @@ class Post(
         private set
 
     @LastModifiedDate
-    var createdAt: Instant = Instant.now()
+    var updatedAt: Instant = Instant.now()
         private set
 }
