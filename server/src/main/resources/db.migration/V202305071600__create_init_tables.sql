@@ -11,8 +11,10 @@ CREATE TABLE rss(
     publisher_id INT UNSIGNED NOT NULL,
     url VARCHAR(1000) NOT NULL,
     last_synced_at DATETIME(6) NOT NULL,
-   created_at DATETIME(6) NOT NULL,
-   updated_at DATETIME(6)
+    created_at DATETIME(6) NOT NULL,
+    updated_at DATETIME(6),
+
+    FOREIGN KEY (publisher_id) REFERENCES publisher(id) ON DELETE CASCADE
 ) ENGINE = InnoDB CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 
 CREATE TABLE post(
@@ -23,5 +25,8 @@ CREATE TABLE post(
     publisher_id INT UNSIGNED NOT NULL,
     description TEXT,
     created_at DATETIME(6) NOT NULL,
-    updated_at DATETIME(6)
+    updated_at DATETIME(6),
+
+    INDEX post__created_at(created_at),
+    FOREIGN KEY (publisher_id) REFERENCES publisher(id) ON DELETE CASCADE
 ) ENGINE = InnoDB CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
