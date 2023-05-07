@@ -27,6 +27,5 @@ CREATE TABLE post(
     created_at DATETIME(6) NOT NULL,
     updated_at DATETIME(6),
 
-    INDEX post__created_at(created_at),
     FOREIGN KEY (publisher_id) REFERENCES publisher(id) ON DELETE CASCADE
 ) ENGINE = InnoDB CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
