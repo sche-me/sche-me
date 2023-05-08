@@ -4,7 +4,7 @@ plugins {
     id("org.springframework.boot") version "3.0.6"
     id("io.spring.dependency-management") version "1.1.0"
     id("org.jlleitschuh.gradle.ktlint") version "11.3.1"
-    id("org.flywaydb.flyway") version "9.8.1"
+    id("org.flywaydb.flyway") version "9.17.0"
 
     kotlin("jvm") version "1.7.22"
     kotlin("plugin.spring") version "1.7.22"
@@ -25,6 +25,8 @@ dependencies {
     implementation("mysql:mysql-connector-java:8.0.32")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.redisson:redisson:3.20.1")
+    implementation("org.flywaydb:flyway-core:9.17.0")
+    implementation("org.flywaydb:flyway-mysql:9.17.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
