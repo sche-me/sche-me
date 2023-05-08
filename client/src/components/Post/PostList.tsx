@@ -1,9 +1,17 @@
 import { useEffect, useState } from 'react'
 import PostItem from './PostItem'
-import { postList } from '../../mock/postList'
+import { useDispatch, useSelector } from 'react-redux';
 import { Post } from '../../types/Post'
+import allAction from '../../redux/actions';
 
 const PostList = () => {
+  const fetchedPosts = useSelector((state:any) => state.postlists);
+  const dispatch = useDispatch(); 
+
+  useEffect(() => {
+    dispatch(allAction.loadPostList());
+  }, []);
+  
   const [pageCount, setPageCount] = useState(0)
   const [fetching, setFetching] = useState(false)
   const [posts, setPosts] = useState<Post[]>([])
@@ -30,7 +38,7 @@ const PostList = () => {
 
   const appendData = () => {
     setFetching(true)
-    setPosts([...posts, ...postList])
+    setPosts(fetchedPosts)
     setPageCount(pageCount + 1)
     setFetching(false)
   }

@@ -1,8 +1,8 @@
-import couriers from './courierReducer';
 import { combineReducers } from 'redux';
+import postlists from './postListReducer';
 
 const rootReducer = combineReducers({
-    couriers
+    postlists
 });
 
 export default rootReducer;
