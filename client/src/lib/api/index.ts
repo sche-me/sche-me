@@ -1,14 +1,11 @@
 import axios from 'axios';
-// import { BASE_URL } from '../../config/config.json';
 
-const searchCourier = () => {
-    return axios.get(
-        `BASE_URL/carriers`
-    );
+const getPostList = () => {
+    return axios.get('/api/article');
 };
 
 const api = {
-    searchCourier
+    getPostList
 };
 
 export default api;

@@ -1,9 +1,17 @@
+import { useDispatch, useSelector } from 'react-redux';
+import allAction from '../../redux/actions';
 import { useEffect, useState } from 'react'
-import PostItem from './PostItem'
-import { postList } from '../../mock/postList'
 import { Post } from '../../types/Post'
+import PostItem from './PostItem'
 
 const PostList = () => {
+  const fetchedPosts = useSelector((state:any) => state.postList);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(allAction.loadPostList());
+  }, []);
+
   const [pageCount, setPageCount] = useState(0)
   const [fetching, setFetching] = useState(false)
   const [posts, setPosts] = useState<Post[]>([])
@@ -22,7 +30,6 @@ const PostList = () => {
 
   window.addEventListener('scroll', handleScroll)
   useEffect(() => {
-    appendData()
     return () => {
       window.removeEventListener('scroll', handleScroll)
     }
@@ -30,7 +37,7 @@ const PostList = () => {
 
   const appendData = () => {
     setFetching(true)
-    setPosts([...posts, ...postList])
+    setPosts(fetchedPosts)
     setPageCount(pageCount + 1)
     setFetching(false)
   }
@@ -44,7 +51,7 @@ const PostList = () => {
   }
   return (
     <ul>
-      {posts.map((post: Post, index: number) =>
+      {fetchedPosts.map((post: Post, index: number) =>
         <li>
           <PostItem key={index} id={index} title={post.title} source={post.source} icon={post.source} />
         </li>
@@ -53,4 +60,4 @@ const PostList = () => {
   )
 }
 
-export default PostList
+export default PostList;

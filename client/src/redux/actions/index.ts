@@ -1,9 +1,9 @@
-import { loadCourier, loadCourierFail, loadCourierSuccess } from './courierAction';
+import { loadPostList, loadPostListSuccess, loadPostListFail } from './postListAction';
 
 const allAction = {
-    loadCourier,
-    loadCourierFail,
-    loadCourierSuccess
+    loadPostList,
+    loadPostListSuccess,
+    loadPostListFail
 };
 
 export default allAction;
