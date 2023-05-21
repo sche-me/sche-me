@@ -1,20 +1,19 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
 import api from '../../lib/api/index';
 import allAction from '../actions/index';
+import { AxiosResponse } from 'axios';
 
-function* getCourier() {
-    console.log("택배사 불러오기 성공");
+function* getPosts() {
     try{
-        const { data } = yield call(api.searchCourier);
-        console.log(data);
-        yield put(allAction.loadCourierSuccess(data));
+        const posts: AxiosResponse = yield call(api.getPostList);
+        yield put(allAction.loadPostListSuccess(posts.data));
     }catch(error){
-        yield put(allAction.loadCourierFail(error));
+        yield put(allAction.loadPostListFail(error));
     }
 }
 
 function* rootSaga(){
-    yield takeEvery("LOAD_COURIER", getCourier);
+    yield takeEvery("LOAD_POSTLIST", getPosts);
 }
 
 export default rootSaga;
