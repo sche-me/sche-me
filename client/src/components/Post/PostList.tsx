@@ -6,37 +6,36 @@ import PostItem from './PostItem'
 
 const PostList = () => {
   const [pageCount, setPageCount] = useState(0)
-  const [fetching, setFetching] = useState(false)
-  const [posts, setPosts] = useState<Post[]>([])
+  const [fetchingPost, setFetchingPost] = useState(false)
 
   const MAXIMUM_PAGES = 10
 
   const fetchedPosts = useSelector((state:any) => state.postList);
   const dispatch = useDispatch();
 
+  const handleScroll = () => {
+    const {scrollHeight, scrollTop, clientHeight } = document.documentElement;
+    if (scrollTop + clientHeight + 100 >= scrollHeight) {
+      setFetchingPost(true)
+    }
+  }
+
   const fetchArticle = useCallback(()=> {
     dispatch(allAction.loadPostList());
-    setPosts(fetchedPosts)
     setPageCount(pageCount + 1)
-    setFetching(false)
+    setFetchingPost(false)
   },[pageCount])
 
   useEffect(() => {
-    const handleScroll = () => {
-      const {scrollHeight, scrollTop, clientHeight } = document.documentElement;
-      if (scrollTop + clientHeight +100 >= scrollHeight) {
-        setFetching(true)
-      }
-    }
-    setFetching(true)
+    handleScroll()
+    setFetchingPost(true)
     window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   useEffect(() => {
-    if (fetching) fetchArticle()
-    else if (pageCount >= MAXIMUM_PAGES) setFetching(false)
-  }, [fetching])
+    if (fetchingPost) fetchArticle()
+    else if (pageCount >= MAXIMUM_PAGES) window.removeEventListener('scroll', handleScroll)
+  }, [fetchingPost])
 
   return (
     <ul>
