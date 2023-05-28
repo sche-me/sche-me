@@ -10,10 +10,18 @@ import com.google.gson.Gson
 
 @Service
 class ArticleService {
-   fun findAll(): Array<Article> {
-     val json = object {}.javaClass.getResource("/mock/TestArticleList.json")?.readText()
-     val products = Gson().fromJson<Array<Article>>(json, Array<Article>::class.java)
+  fun findAll(limit: Int, page: Int): Array<Article> {
+    val json = object {}.javaClass.getResource("/mock/TestArticleList.json")?.readText()
+    val products = Gson().fromJson<Array<Article>>(json, Array<Article>::class.java)
 
-     return products
-   }
+    val total = products.size
+    val start = limit * (page - 1)
+    var end = limit * page - 1
+
+    if (total <= end) {
+      end = total - 1
+    }
+
+    return products.slice(start..end).toTypedArray()
+  }
 }
