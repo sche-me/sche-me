@@ -1,51 +1,50 @@
-import { useDispatch, useSelector } from 'react-redux';
-import allAction from '../../redux/actions';
+import { useDispatch, useSelector } from 'react-redux'
+import allAction from '../../redux/actions'
 import { useCallback, useEffect, useState } from 'react'
 import { Post } from '../../types/Post'
 import PostItem from './PostItem'
 
 const PostList = () => {
   const [pageCount, setPageCount] = useState(0)
-  const [fetchingPost, setFetchingPost] = useState(false)
 
   const MAXIMUM_PAGES = 10
 
-  const fetchedPosts = useSelector((state:any) => state.postList);
-  const dispatch = useDispatch();
+  const fetchedPosts = useSelector((state: any) => state.postList)
+  const dispatch = useDispatch()
 
   const handleScroll = () => {
-    const {scrollHeight, scrollTop, clientHeight } = document.documentElement;
+    const { scrollHeight, scrollTop, clientHeight } = document.documentElement
     if (scrollTop + clientHeight + 100 >= scrollHeight) {
-      setFetchingPost(true)
+      fetchArticle()
     }
   }
 
-  const fetchArticle = useCallback(()=> {
-    dispatch(allAction.loadPostList());
+  const fetchArticle = useCallback(() => {
+    dispatch(allAction.loadPostList(false))
     setPageCount(pageCount + 1)
-    setFetchingPost(false)
-  },[pageCount])
+  }, [pageCount])
 
   useEffect(() => {
-    handleScroll()
-    setFetchingPost(true)
+    fetchArticle()
     window.addEventListener('scroll', handleScroll)
+    if (pageCount >= MAXIMUM_PAGES) window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  useEffect(() => {
-    if (fetchingPost) fetchArticle()
-    else if (pageCount >= MAXIMUM_PAGES) window.removeEventListener('scroll', handleScroll)
-  }, [fetchingPost])
 
   return (
     <ul>
-      {fetchedPosts.map((post: Post, index: number) =>
+      {fetchedPosts.map((post: Post, index: number) => (
         <li>
-          <PostItem key={index} id={index} title={post.title} source={post.source} icon={post.source} />
+          <PostItem
+            key={index}
+            id={index}
+            title={post.title}
+            source={post.source}
+            icon={post.source}
+          />
         </li>
-      )}
+      ))}
     </ul>
   )
 }
 
-export default PostList;
+export default PostList

@@ -7,7 +7,7 @@ import { applyMiddleware, compose, legacy_createStore as createStore } from 'red
 import rootReducer from './redux/reducers/index.ts'
 import createSagaMiddleware from 'redux-saga'
 import rootSaga from './redux/sagas/index.ts'
-const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware()
 
 // declare global {
 //   interface Window {
@@ -15,9 +15,8 @@ const sagaMiddleware = createSagaMiddleware();
 //   }
 // }
 // const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION__  || compose;
-const store = createStore(rootReducer,applyMiddleware(sagaMiddleware));
-
-sagaMiddleware.run(rootSaga);
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware))
+sagaMiddleware.run(rootSaga)
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <Provider store={store}>
