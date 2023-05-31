@@ -8,6 +8,7 @@ plugins {
 
     kotlin("jvm") version "1.7.22"
     kotlin("plugin.spring") version "1.7.22"
+    kotlin("plugin.jpa") version "1.4.31"
 }
 
 group = "com.colecto"
@@ -28,6 +29,9 @@ dependencies {
     implementation("org.redisson:redisson:3.20.1")
     implementation("org.flywaydb:flyway-core:9.17.0")
     implementation("org.flywaydb:flyway-mysql:9.17.0")
+
+    implementation("com.squareup.okhttp3:okhttp:4.11.0")
+    implementation("org.jsoup:jsoup:1.16.1")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
