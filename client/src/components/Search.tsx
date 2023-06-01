@@ -1,16 +1,48 @@
-const Search = () => {
-    return (
-        <form>
-            <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-            <div className="relative">
-                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <svg aria-hidden="true" className="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                </div>
-                <input type="search" id="default-search" className="focus:outline-0 block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="제목을 입력해주세요" required/>
-                <button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-sky-600 hover:bg-sky-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
-            </div>
-        </form>
-    );
-};
+import React from 'react'
 
-export default Search;
+const Search = () => {
+  const searchTypeRef = React.useRef<HTMLSelectElement>(null)
+  const searchInputRef = React.useRef<HTMLInputElement>(null)
+
+  const submitHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    console.log(searchTypeRef.current && searchTypeRef.current.value)
+    console.log(searchInputRef.current && searchInputRef.current.value)
+  }
+
+  return (
+    <form className="flex flex-col md:flex-row gap-3 justify-center">
+      <div className="flex">
+        <select
+          ref={searchTypeRef}
+          name="searchType"
+          className="w-[100px] mr-[10px] h-10 border-2 border-sky-600 focus:outline-none focus:border-sky-600 text-sky-600 rounded px-2 md:px-3 py-0 md:py-1 tracking-wider"
+        >
+          <option value="All" defaultValue="">
+            전체
+          </option>
+          <option value="Title">제목</option>
+          <option value="Content">내용</option>
+          <option value="Source">출처</option>
+        </select>
+        <div className="flex">
+          <input
+            type="text"
+            ref={searchInputRef}
+            placeholder="검색조건을 선택해주세요"
+            className="w-full md:w-80 px-3 h-10 rounded-l border-2 border-sky-600 focus:outline-none focus:border-sky-600"
+          />
+          <button
+            type="submit"
+            onClick={submitHandler}
+            className="bg-sky-600 text-white rounded-r px-2 md:px-3 py-0 md:py-1"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </form>
+  )
+}
+
+export default Search
