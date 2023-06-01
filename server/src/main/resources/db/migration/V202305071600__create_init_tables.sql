@@ -17,13 +17,14 @@ CREATE TABLE rss(
     FOREIGN KEY (publisher_id) REFERENCES publisher(id) ON DELETE CASCADE
 ) ENGINE = InnoDB CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 
-CREATE TABLE post(
+CREATE TABLE article(
     id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     author VARCHAR(50) NOT NULL,
     title VARCHAR(1000) NOT NULL,
     url VARCHAR(1000) NOT NULL,
     publisher_id INT UNSIGNED NOT NULL,
     description TEXT,
+    image_url VARCHAR(1000) NOT NULL,
     created_at DATETIME(6) NOT NULL,
     updated_at DATETIME(6),
 

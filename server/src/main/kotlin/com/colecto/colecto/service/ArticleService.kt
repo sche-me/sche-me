@@ -1,27 +1,37 @@
 package com.colecto.colecto.service
 
-import java.io.File
-import java.io.FileReader
-import java.io.BufferedReader
+import com.colecto.colecto.model.Article
+import com.colecto.colecto.model.Publisher
+import com.colecto.colecto.model.Rss
+import com.colecto.colecto.repository.ArticleRepostiory
+import com.colecto.colecto.repository.PublisherRepostiory
+import com.colecto.colecto.repository.RssRepostiory
+import org.springframework.data.domain.PageRequest
 import org.springframework.stereotype.Service
-import com.colecto.colecto.entity.Article
-import com.google.gson.GsonBuilder
-import com.google.gson.Gson
 
 @Service
-class ArticleService {
-  fun findAll(limit: Int, page: Int): Array<Article> {
-    val json = object {}.javaClass.getResource("/mock/TestArticleList.json")?.readText()
-    val products = Gson().fromJson<Array<Article>>(json, Array<Article>::class.java)
-
-    val total = products.size
-    val start = limit * (page - 1)
-    var end = limit * page - 1
-
-    if (total <= end) {
-      end = total - 1
+class ArticleService(
+    private val articleRepostiory: ArticleRepostiory,
+    private val publisherRepostiory: PublisherRepostiory,
+    private val rssRepostiory: RssRepostiory,
+) {
+    fun findAll(page: Int, limit: Int): List<Article> {
+        initData()
+        return articleRepostiory.findAll(PageRequest.of(page, limit)).content
     }
 
-    return products.slice(start..end).toTypedArray()
-  }
+    private fun initData() {
+        publisherRepostiory.findAll().find { it.name == "kakao" } ?: run {
+            val publisher = publisherRepostiory.save(
+                Publisher("kakao", "https://tech.kakao.com/blog/"),
+            )
+
+            rssRepostiory.save(
+                Rss(
+                    "https://tech.kakao.com/feed/",
+                    publisher,
+                ),
+            )
+        }
+    }
 }

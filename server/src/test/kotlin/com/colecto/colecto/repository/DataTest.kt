@@ -1,6 +1,6 @@
 package com.colecto.colecto.repository
 
-import com.colecto.colecto.model.Post
+import com.colecto.colecto.model.Article
 import com.colecto.colecto.model.Publisher
 import com.colecto.colecto.model.Rss
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -20,7 +20,7 @@ class DataTest {
     lateinit var publisherRepostiory: PublisherRepostiory
 
     @Autowired
-    lateinit var postRepostiory: PostRepostiory
+    lateinit var articleRepostiory: ArticleRepostiory
 
     @Test
     fun `save all and find all`() {
@@ -30,16 +30,16 @@ class DataTest {
                 Publisher("test2", "https://test2.com"),
             ),
         )
-        val posts = postRepostiory.saveAll(
+        val articles = articleRepostiory.saveAll(
             listOf(
-                Post(
+                Article(
                     "test_author1",
                     "test_title1",
                     "https://test1.com/1",
                     "test_description1",
                     publishers[0],
                 ),
-                Post(
+                Article(
                     "test_author2",
                     "test_title2",
                     "https://test2.com/1",
@@ -64,12 +64,12 @@ class DataTest {
         assertEquals(publishers[0], publisherRepostiory.getReferenceById(publishers[0].id))
         assertEquals(publishers[1], publisherRepostiory.getReferenceById(publishers[1].id))
 
-        val post1 = postRepostiory.getReferenceById(posts[0].id)
-        assertEquals(posts[0], post1)
+        val post1 = articleRepostiory.getReferenceById(articles[0].id)
+        assertEquals(articles[0], post1)
         assertEquals(publishers[0], post1.publisher)
 
-        val post2 = postRepostiory.getReferenceById(posts[1].id)
-        assertEquals(posts[1], post2)
+        val post2 = articleRepostiory.getReferenceById(articles[1].id)
+        assertEquals(articles[1], post2)
         assertEquals(publishers[1], post2.publisher)
 
         val rss1 = rssRepostiory.getReferenceById(rss[0].id)
