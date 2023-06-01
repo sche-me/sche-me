@@ -1,11 +1,11 @@
-import axios from 'axios';
+import axios from 'axios'
 
 const getPostList = () => {
-    return axios.get('/api/article');
-};
+  return axios.get('/api/article')
+}
 
 const api = {
-    getPostList
-};
+  getPostList,
+}
 
-export default api;
+export default api

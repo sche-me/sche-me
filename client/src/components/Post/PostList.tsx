@@ -1,63 +1,50 @@
-import { useDispatch, useSelector } from 'react-redux';
-import allAction from '../../redux/actions';
-import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import allAction from '../../redux/actions'
+import { useCallback, useEffect, useState } from 'react'
 import { Post } from '../../types/Post'
 import PostItem from './PostItem'
 
 const PostList = () => {
-  const fetchedPosts = useSelector((state:any) => state.postList);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(allAction.loadPostList());
-  }, []);
-
   const [pageCount, setPageCount] = useState(0)
-  const [fetching, setFetching] = useState(false)
-  const [posts, setPosts] = useState<Post[]>([])
 
   const MAXIMUM_PAGES = 10
 
-  const handleScroll = () => {
-    const scrollHeight = document.documentElement.scrollHeight
-    const scrollTop = document.documentElement.scrollTop
-    const clientHeight = document.documentElement.clientHeight
+  const fetchedPosts = useSelector((state: any) => state.postList)
+  const dispatch = useDispatch()
 
+  const handleScroll = () => {
+    const { scrollHeight, scrollTop, clientHeight } = document.documentElement
     if (scrollTop + clientHeight + 100 >= scrollHeight) {
-      fetchMoreData()
+      fetchArticle()
     }
   }
 
-  window.addEventListener('scroll', handleScroll)
+  const fetchArticle = useCallback(() => {
+    dispatch(allAction.loadPostList(false))
+    setPageCount(pageCount + 1)
+  }, [pageCount])
+
   useEffect(() => {
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
+    fetchArticle()
+    window.addEventListener('scroll', handleScroll)
+    if (pageCount >= MAXIMUM_PAGES) window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  const appendData = () => {
-    setFetching(true)
-    setPosts(fetchedPosts)
-    setPageCount(pageCount + 1)
-    setFetching(false)
-  }
-
-
-  const fetchMoreData = () => {
-    if (pageCount >= MAXIMUM_PAGES) return
-    if (fetching) return
-
-    appendData()
-  }
   return (
     <ul>
-      {fetchedPosts.map((post: Post, index: number) =>
+      {fetchedPosts.map((post: Post, index: number) => (
         <li>
-          <PostItem key={index} id={index} title={post.title} source={post.source} icon={post.source} />
+          <PostItem
+            key={index}
+            id={index}
+            title={post.title}
+            source={post.source}
+            icon={post.source}
+          />
         </li>
-      )}
+      ))}
     </ul>
   )
 }
 
-export default PostList;
+export default PostList
