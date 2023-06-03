@@ -20,18 +20,18 @@ class RssReader {
     lateinit var publisherRepostiory: PublisherRepostiory
 
     @Autowired
-    lateinit var postRepostiory: PostRepostiory
+    lateinit var articleRepostiory: ArticleRepostiory
 
     @BeforeEach
     fun reset() {
         publisherRepostiory.deleteAll()
-        postRepostiory.deleteAll()
+        articleRepostiory.deleteAll()
         rssRepostiory.deleteAll()
     }
 
     @Test
     fun `sycn kakao data`() {
-        assertEquals(0, postRepostiory.findAll().count())
+        assertEquals(0, articleRepostiory.findAll().count())
         val publisher = publisherRepostiory.save(
             Publisher("kakao", "https://tech.kakao.com/blog/"),
         )
@@ -45,6 +45,6 @@ class RssReader {
 
         sleep(5000)
 
-        assertNotEquals(0, postRepostiory.findAll().count())
+        assertNotEquals(0, articleRepostiory.findAll().count())
     }
 }

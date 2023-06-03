@@ -38,8 +38,8 @@ const PostList = () => {
             key={index}
             id={index}
             title={post.title}
-            source={post.source}
-            icon={post.source}
+            url={post.url}
+            description={post.description}
           />
         </li>
       ))}
