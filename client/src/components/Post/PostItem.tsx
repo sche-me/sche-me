@@ -8,7 +8,7 @@ const PostItem: React.FC<Post> = ({ title, url, description }) => {
       <div className="flex">
         <p className="truncate text-[14px] text-left text-black/[0.38]">{description}</p>
       </div>
-      <div class="mt-4">
+      <div className="mt-4">
         <svg
           width={999}
           height={1}
